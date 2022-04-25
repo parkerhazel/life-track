@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-export const Login = ({}) => {
+export const Login = () => {
   return (
     <LoginRoot>
       <Element1>
@@ -31,15 +31,17 @@ export const Login = ({}) => {
   );
 };
 const LoginRoot = styled.div`
-  height: 734px;
-  background-color: #faf2ea;
+  background-color: #FBF3EA;
   display: flex;
   overflow: hidden;
   flex-direction: column;
   justify-content: flex-end;
   margin: auto;
   min-width: 706px;
-  padding: 145px 367px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 367px;
+  padding-right: 367px;
 `;
 const Element1 = styled.div`
   height: 118px;
@@ -191,9 +193,10 @@ const WhiteRectangle = styled.input`
   :: placeholder {
     color: undefined;
     font-size: 35px;
-    padding-left: 20px
   }
   align-self: flex-end;
   border-radius: 25px;
   margin: 0px 63px 14px 0px;
+  font-size: 35px;
+  padding-left: 20px
 `;

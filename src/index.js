@@ -16,22 +16,21 @@
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 import { StrictMode } from "react";
-    import ReactDOM from "react-dom";
-    
-    import WebFont from "webfontloader";
-    import App from "./App";
+import ReactDOM from "react-dom";
 
-    WebFont.load({
-        google: {
-            families: ['Poppins', "Inter:400","Roboto:600"]
-        }
-      });
+import WebFont from "webfontloader";
+import App from "./App";
 
-    const rootElement = document.getElementById("root");
-    ReactDOM.render(
-      <StrictMode>
-        <App />
-      </StrictMode>,
-      rootElement
-    );
-    
+WebFont.load({
+    google: {
+        families: ['Poppins', "Inter:400","Roboto:600"]
+    }
+  });
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  rootElement
+);
