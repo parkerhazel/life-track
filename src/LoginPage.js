@@ -1,53 +1,29 @@
-// import {Login} from "./LoginPage";
-import app from "./config/firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { TaskView } from "./TaskView";
-import React, {useState} from "react";
 import styled from "styled-components";
+import app from "./config/firebase";
+import { getAuth } from "firebase/auth";
+import App from "./App";
 
-const auth = getAuth(app);
+const auth = getAuth(app)
+console.log(auth)
 
-var email = "testuser@test.com"
-var password = "password123"
+export const Login = () => {
 
-signInWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-    // Signed in 
-    // setUser(() => {return userCredential.user});
-    console.log(auth.currentUser)
-    // ...
-})
-.catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode, errorMessage)
-});
+  function changeCurrentPage() {
+    App.setCurrentPage("Task View")
+  }
 
-export default function App() {
+  return (
+    <LoginRoot>
+      <Welcome>
+        <Text1>Welcome to</Text1>
+        <Text2>LIFETRACK</Text2>
+      </Welcome>
+      <Text3>Stay on track by keeping track.</Text3>
+      <Button onClick={changeCurrentPage}>Start!</Button>
+    </LoginRoot>
+  );
 
-    let [currentPage, setCurrentPage] = useState("Login")
-
-    function changeCurrentPage() {
-        setCurrentPage("Task View");
-    }
-
-    if (currentPage==="Login") {
-        return (
-        <LoginRoot>
-            <Welcome>
-                <Text1>Welcome to</Text1>
-                <Text2>LIFETRACK</Text2>
-            </Welcome>
-            <Text3>Stay on track by keeping track.</Text3>
-            <Button onClick={changeCurrentPage}>Start!</Button>
-        </LoginRoot>
-        );
-    }
-    else {
-        return <TaskView />;
-    }
-
-}
+};
 const LoginRoot = styled.div`
   background-color: #FBF3EA;
   display: flex;
