@@ -122,7 +122,7 @@ export const TaskView = () => {
                         </div>
                     </div>
             );
-        }
+            }
     } else if (state.view === 'calendarView') {
         return (
             <div className='taskViewDiv'>
@@ -168,5 +168,6 @@ export const TaskView = () => {
   };
 
 export const TaskItem = () => {
+
 
 }
