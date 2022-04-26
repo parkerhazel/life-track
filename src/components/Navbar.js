@@ -94,6 +94,13 @@ const Navbar = () => {
         fontSize: "x-large"
     }
 
+    let trackedTasksStyle = {
+        backgroundColor: "#FAF9F6",
+        width: "98%",
+        height: "52%",
+        borderRadius: "25px"
+    }
+
     let [showProfile, setShowProfile] = useState(false);
 
     function showProfileHandler() {
@@ -102,6 +109,8 @@ const Navbar = () => {
     function hideProfileHandler() {
         setShowProfile(false)
     }
+
+    let tasks = (<div style={{paddingLeft: "20px", paddingTop:"15px"}}>No Tracked Tasks.</div>)
 
     if (showProfile) {
         return (
@@ -112,16 +121,16 @@ const Navbar = () => {
                     <button style={buttonStyle} onClick={hideProfileHandler}>Profile</button>
                 </div>
                 <div className="card" style={profileStyle}>
-                    <div className="container">
+                    <div className="container" style={{height: "98%"}}>
                         <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
                         <h1 style={{marginLeft:"48.5%", fontSize: "x-large", textDecoration: "underline"}}><b>Profile</b></h1>
-                        <div style={{marginLeft: "25px"}}>
+                        <div style={{marginLeft: "25px", height: "90%"}}>
                             <h2>Name</h2>
                             <input placeholder={currentUser.displayName}/>
                             <h2>Email</h2>
                             <input placeholder={currentUser.email}/>
                             <h2>Tracked Tasks</h2>
-                            <div></div>
+                            <div style={trackedTasksStyle}>{tasks}</div>
                         </div>
                     </div>
                 </div>
