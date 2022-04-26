@@ -161,31 +161,3 @@ const Text2 = styled.div`
     top: 36px;
     margin-left: 20px;
 `;
-
-const Name = styled.input`
-width: 507px;
-  height: 63px;
-  background-color: #ffffff;
-  :: placeholder {
-    color: undefined;
-    font-size: 35px;
-    padding-left: 20px
-  }
-  align-self: flex-end;
-  border-radius: 25px;
-  margin: 0px 63px 14px 0px;
-`
-
-const Email = styled.input`
-width: 507px;
-  height: 63px;
-  background-color: #ffffff;
-  :: placeholder {
-    color: undefined;
-    font-size: 35px;
-    padding-left: 20px
-  }
-  align-self: flex-end;
-  border-radius: 25px;
-  margin: 0px 63px 14px 0px;
-`
