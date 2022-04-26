@@ -5,7 +5,7 @@ import { TaskView } from "./TaskView";
 import React, {useState} from "react";
 import styled from "styled-components";
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 var email = "testuser@test.com"
 var password = "password123"
