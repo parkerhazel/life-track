@@ -34,7 +34,7 @@
 .taskItem {
     border: 1px solid black;
     margin: auto;
-    width: 75%;
+    width: 85%;
     padding: 2px;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -47,7 +47,7 @@
 #taskContainer {
     background-color: #d0dbe1;
     margin: auto;
-    width: 75%;
+    width: 65%;
     position: relative;
     padding: 10px;
     border: 1px solid black;
