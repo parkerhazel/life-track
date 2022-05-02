@@ -41,7 +41,7 @@ const Navbar = () => {
     let currentUser = auth.currentUser
 
     let outerStyle = {
-        backgroundColor: "#D0DBE1",
+        backgroundColor: "#DBCBD8",
         display: "flex",
         flexDirection: "row",
         height: "70px"
@@ -81,7 +81,7 @@ const Navbar = () => {
         margin: "25px 25px 25px 25px",
         width: "96%",
         height: "82%",
-        backgroundColor: "#D0DBE1",
+        backgroundColor: "#DBCBD8",
         border: "2px",
         borderStyle: "solid",
         borderRadius: "25px",
@@ -91,11 +91,12 @@ const Navbar = () => {
     let closeButtonStyle = {
         right: "20px",
         position: "fixed",
-        fontSize: "x-large"
+        fontSize: "x-large",
+        backgroundColor: "#F2FDFF"
     }
 
     let trackedTasksStyle = {
-        backgroundColor: "#FAF9F6",
+        backgroundColor: "#F2FDFF",
         width: "98%",
         height: "52%",
         borderRadius: "25px"
@@ -123,7 +124,7 @@ const Navbar = () => {
                 <div className="card" style={profileStyle}>
                     <div className="container" style={{height: "98%"}}>
                         <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
-                        <h1 style={{marginLeft:"48.5%", fontSize: "x-large", textDecoration: "underline"}}><b>Profile</b></h1>
+                        <h1 style={{marginLeft:"48.5%", fontSize: "x-large"}}><b>Profile</b></h1>
                         <div style={{marginLeft: "25px", height: "90%"}}>
                             <h2>Name</h2>
                             <input placeholder={currentUser.displayName}/>
@@ -155,7 +156,7 @@ const Text2 = styled.div`
     align-items: center;
     justify-content: left;
     font-size: 35px;
-    font-family: Roboto;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: #135bc6;
     top: 36px;

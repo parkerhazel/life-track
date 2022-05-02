@@ -13,7 +13,7 @@
 .title {
     text-align: center;
     /* color: #135bc6; */
-    color: black;
+    color: #101935;
 }
 
 .user {
@@ -29,6 +29,9 @@
     width: 100px;
     height: 50px;
     font-size: 25px;
+    border-radius: 20px;
+    background-color: #564787;
+    color: white;
 }
 
 .taskItem {
@@ -52,4 +55,11 @@
     padding: 10px;
     border: 1px solid black;
     border-radius: 15px;
+}
+
+.viewBtn {
+    padding: 100px;
+    background-color: #564787;
+    color: white;
+    font-family: 'Poppins';
 }

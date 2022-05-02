@@ -36,6 +36,7 @@ const LoginRoot = styled.div`
   padding-bottom: 0px;
   padding-left: 367px;
   padding-right: 367px;
+  height: 100vh;
 `;
 const Welcome = styled.div`
   height: 118px;
@@ -48,7 +49,7 @@ const Text1 = styled.div`
   width: 420px;
   height: 55px;
   font-size: 30px;
-  font-family: Inter;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   position: absolute;
   left: 143px;
@@ -76,7 +77,7 @@ const Text3 = styled.div`
 
 const Button = styled.button`
   width: 224px;
-  background-color: #a8e2de;
+  background-color: #9AD4D6;
   display: flex;
   flex-direction: row;
   justify-content: center;

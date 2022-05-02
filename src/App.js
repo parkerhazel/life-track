@@ -66,7 +66,7 @@ export default function App() {
 
 }
 const LoginRoot = styled.div`
-  background-color: #FBF3EA;
+  background-color: #F2FDFF;
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -89,7 +89,7 @@ const Text1 = styled.div`
   width: 420px;
   height: 55px;
   font-size: 30px;
-  font-family: Inter;
+  font-family:'Poppins', sans-serif;
   font-weight: 400;
   position: absolute;
   left: 143px;
@@ -98,7 +98,7 @@ const Text2 = styled.div`
   text-align: center;
   width: 706px;
   font-size: 70px;
-  font-family: Roboto;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   color: #135bc6;
   position: absolute;
@@ -127,6 +127,6 @@ const Button = styled.button`
   align-self: center;
   text-align: center;
   font-size: 35px;
-  font-family: Inter;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 `
