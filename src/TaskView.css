@@ -47,6 +47,16 @@
     border-radius: 15px;
 }
 
+.viewBtn {
+    padding: 100px;
+    background-color: #564787;
+    color: white;
+    font-family: 'Poppins';
+    position: relative;
+    display: block;
+    border-radius: 20px;
+}
+
 #taskContainer {
     background-color: #d0dbe1;
     margin: auto;
@@ -55,11 +65,4 @@
     padding: 10px;
     border: 1px solid black;
     border-radius: 15px;
-}
-
-.viewBtn {
-    padding: 100px;
-    background-color: #564787;
-    color: white;
-    font-family: 'Poppins';
 }

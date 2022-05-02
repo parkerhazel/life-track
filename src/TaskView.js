@@ -287,8 +287,8 @@ export const TaskView = () => {
                 return (
                     <div className='taskViewDiv'>
                         <Navbar />
-                        <button className='viewBtn' onClick={updateToListView}>List</button>
-                        <button className='viewBtn' onClick={updateToCalendarView}>Calendar</button>
+                        <button onClick={updateToListView} className='viewBtn'>List</button>
+                        <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
                         <div className='titleDiv'>
                             <h1 className='title'>Current Tasks</h1>
                         </div>
