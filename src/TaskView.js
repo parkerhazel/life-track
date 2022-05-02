@@ -261,8 +261,12 @@ export const TaskView = () => {
             return (
                 <div className='taskViewDiv'>
                     <Navbar />
-                    <button onClick={updateToListView}>List</button>
-                    <button onClick={updateToCalendarView}>Calendar</button>
+                    <div className='btnDiv'>
+                        <button onClick={updateToListView} className='viewBtn'>List</button>
+                        <div className='space'>
+                        </div>
+                        <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+                    </div>
                     <div className='titleDiv'>
                         <h1 className='title'>Current Tasks</h1>
                     </div>
@@ -287,8 +291,12 @@ export const TaskView = () => {
                 return (
                     <div className='taskViewDiv'>
                         <Navbar />
-                        <button onClick={updateToListView} className='viewBtn'>List</button>
-                        <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+                        <div className='btnDiv'>
+                            <button onClick={updateToListView} className='viewBtn'>List</button>
+                            <div className='space'>
+                            </div>
+                            <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+                        </div>
                         <div className='titleDiv'>
                             <h1 className='title'>Current Tasks</h1>
                         </div>
@@ -304,11 +312,11 @@ export const TaskView = () => {
             <div className='createTaskDiv'>
                 <h1 className='createTaskTitle'>Create Task</h1>
                 <form>
-                    <label htmlFor='name'>Name</label>
-                    <input type='text' id='name' onChange={handleNameInputChange} />
+                    <label className='label' htmlFor='name'>Name</label>
+                    <input className='nameBox' type='text' id='name' onChange={handleNameInputChange} />
                     <br />
-                    <label htmlFor='description'>Description</label>
-                    <input type='text' id='description' onChange={handleDescriptionInputChange}/>
+                    <label className='label' htmlFor='description' >Description</label>
+                    <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
                     <br/>
                     {/* <div id='recurringDiv'>
                         <p>Recurring?</p>
@@ -317,8 +325,12 @@ export const TaskView = () => {
                         <label htmlFor='recurringN'>N</label>
                         <input type='checkbox' id='recurringN' />
                     </div> */}
-                    <button onClick={createTask}>Submit</button>
-                    <button>Cancel</button>
+                    <div className='actionBtns'>
+                        <button onClick={createTask} className='viewBtn'>Submit</button>
+                        <div className='space'>
+                        </div>
+                        <button className='cancelBtn'>Cancel</button>
+                    </div>
                 </form>
             </div>
         )
@@ -326,8 +338,12 @@ export const TaskView = () => {
         return (
         <div>
             <Navbar />
-            <button onClick={updateToListView}>List</button>
-            <button onClick={updateToCalendarView}>Calendar</button>
+            <div className='btnDiv'>
+                <button onClick={updateToListView} className='viewBtn'>List</button>
+                <div className='space'>
+                </div>
+                <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+            </div>
             <CalendarView />
         </div>
         );

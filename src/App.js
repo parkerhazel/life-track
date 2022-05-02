@@ -66,7 +66,7 @@ export default function App() {
 
 }
 const LoginRoot = styled.div`
-  background-color: #F2FDFF;
+  background-color: #FBF3EA;
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -117,7 +117,7 @@ const Text3 = styled.div`
 
 const Button = styled.button`
   width: 224px;
-  background-color: #a8e2de;
+  background-color: #B7B7A4;
   display: flex;
   flex-direction: row;
   justify-content: center;

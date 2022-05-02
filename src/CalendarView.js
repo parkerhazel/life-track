@@ -3,6 +3,8 @@ import '@mobiscroll/react/dist/css/mobiscroll.min.css';
 import { Eventcalendar } from '@mobiscroll/react';
 import { myEvents } from './TaskView';
 import Navbar from "./components/Navbar"
+import './CalendarView.css'
+
 
 export const CalendarView = () => {
     const view = React.useMemo(() => {
@@ -18,7 +20,7 @@ export const CalendarView = () => {
     }, []);
 
     return (
-            <Eventcalendar
+            <Eventcalendar className='calendar'
                 theme="ios" 
                 themeVariant="light"
                 clickToCreate={false}

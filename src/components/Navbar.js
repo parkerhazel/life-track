@@ -41,7 +41,7 @@ const Navbar = () => {
     let currentUser = auth.currentUser
 
     let outerStyle = {
-        backgroundColor: "#DBCBD8",
+        backgroundColor: "#B7B7A4",
         display: "flex",
         flexDirection: "row",
         height: "70px"
@@ -81,7 +81,7 @@ const Navbar = () => {
         margin: "25px 25px 25px 25px",
         width: "96%",
         height: "82%",
-        backgroundColor: "#DBCBD8",
+        backgroundColor: "#B7B7A4",
         border: "2px",
         borderStyle: "solid",
         borderRadius: "25px",
