@@ -14,150 +14,133 @@ const monday = now.getDate() - day + (day === 0 ? -6 : 1);
 export let myEvents = [{
     start: new Date('May 1, 2022 03:24:00'),
     title: 'Go to Gym',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 
 }, {
     start: new Date('June 23, 2022'),
     title: 'John OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date('May 8, 2022'),
     title: 'Take out trash',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday),
     title: 'Emma OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 1),
     title: 'Mark OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 1),
     title: 'Carol OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Luke OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Carol OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Kate OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Dean OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Emma OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Jason OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 3),
     title: 'Jason OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'Ryan OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'John OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'Dean OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }];
-
-export let myView = 'listView';
-export function setMyView(val) {
-    myView = val;
-}
-
-// export const CalendarView = () => {
-//     const view = React.useMemo(() => {
-//         return {
-//             calendar: {
-//                 type: 'month'
-//             }
-//         };
-//     }, []);
-    
-//     const orderMyEvents = React.useCallback((event) => {
-//         return event.accepted ? 1 : -1;
-//     }, []);
-
-//     return (
-//         <Eventcalendar
-//             theme="ios" 
-//             themeVariant="light"
-//             clickToCreate={false}
-//             dragToCreate={false}
-//             dragToMove={false}
-//             dragToResize={false}
-//             view={view}
-//             data={myEvents}
-//             eventOrder={orderMyEvents}
-//        />
-//     ); 
-// }
 
 export const TaskView = () => {
     const [state, setState] = useState({view: 'calendarView', tasks: [], description: '', name: '', recurring: null})
@@ -180,7 +163,6 @@ export const TaskView = () => {
                 recurring: prevState.recurring
             };
         });
-        console.log(state);
     }
 
     const handleDescriptionInputChange = ({target}) => {
@@ -194,7 +176,6 @@ export const TaskView = () => {
                 
             }
         });
-        console.log(state);
     }
 
     const createTask = () => {
@@ -203,7 +184,7 @@ export const TaskView = () => {
             title: state.name,
             description: state.description,
             start: new Date(),
-            color: '#00ca10',
+            color: '#fbf3ea',
             allDay: true,
             accepted: true
         });
@@ -212,7 +193,7 @@ export const TaskView = () => {
             title: state.name,
             description: state.description,
             start: new Date(),
-            color: '#00ca10',
+            color: '#fbf3ea',
             allDay: true,
             accepted: true
         });
@@ -228,6 +209,55 @@ export const TaskView = () => {
         });
     }
 
+    const cancelTask = () => {
+        setState((prevState) => {
+            return {
+                view: 'listView',
+                tasks: prevState.tasks,
+                description: '',
+                name: '',
+                recurring: null
+            };
+        });
+    }
+
+    const deleteTask = (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        console.log(event.target.parentElement.parentElement.id);
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        console.log(idx);
+        myEvents[idx].visible = false;
+        console.log(myEvents);
+    }
+
+    const completeTask = (event) => {
+        event.preventDefault();
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        if (event.target.innerHTML === 'Complete') {
+            event.target.innerHTML = 'Undo Completion';
+            myEvents[idx].color = '#00ca10';
+            event.target.parentElement.parentElement.style.backgroundColor = '#00ca10';
+        } else {
+            event.target.innerHTML = 'Complete'
+            myEvents[idx].color = '#fbf3ea'
+            event.target.parentElement.parentElement.style.backgroundColor = '#fbf3ea';
+        }
+    }
+
+    const filterTasks = () => {
+        let filteredTasks = [];
+        for (let task in myEvents) {
+            console.log(task);
+            if (task.visible) {
+                filteredTasks.push(task);
+            }
+        }
+        return filteredTasks;
+    };
+
     const updateToCalendarView = () => {
         setState((prevState) => {
             return {
@@ -239,7 +269,6 @@ export const TaskView = () => {
                 
             }
         });
-        console.log(state);
     }
 
     const updateToListView = () => {
@@ -253,7 +282,6 @@ export const TaskView = () => {
                 
             }
         });
-        console.log(state);
     }
 
     if (state.view === 'listView') {
@@ -271,14 +299,23 @@ export const TaskView = () => {
                         <h1 className='title'>Current Tasks</h1>
                     </div>
                     <div id='taskContainer'>
-                        {myEvents.map(task => {
-                            console.log(myEvents);
-                            return (
-                                    <div className='taskItem'>
-                                        <h3>{task.title}</h3>
-                                        <p>{task.description}</p>
+                        {myEvents.map((task, index) => {
+                            if (task.visible) {
+                                let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+                                return (
+                                    <div className='taskItem' id={`taskItem-${index}`} style={{backgroundColor:color}}>
+                                        <div className='taskInfo'>
+                                            <h3>{task.title}</h3>
+                                            <p>{task.description}</p>
+                                        </div>
+                                        <div className='taskItemButtons'>
+                                            <button className='taskItemEdit'>Edit</button>
+                                            <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
+                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
+                                        </div>
                                     </div>
-                            )
+                                )
+                            }
                         })}
                     </div>
                     <div>
@@ -318,13 +355,6 @@ export const TaskView = () => {
                     <label className='label' htmlFor='description' >Description</label>
                     <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
                     <br/>
-                    {/* <div id='recurringDiv'>
-                        <p>Recurring?</p>
-                        <label htmlFor='recurringY'>Y</label>
-                        <input type='checkbox' id='recurringY' />
-                        <label htmlFor='recurringN'>N</label>
-                        <input type='checkbox' id='recurringN' />
-                    </div> */}
                     <div className='actionBtns'>
                         <button onClick={createTask} className='viewBtn'>Submit</button>
                         <div className='space'>
@@ -348,9 +378,4 @@ export const TaskView = () => {
         </div>
         );
     }
-  
   }
-
-export const TaskItem = () => {
-
-}
