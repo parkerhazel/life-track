@@ -205,7 +205,8 @@ export const TaskView = () => {
             start: new Date(),
             color: '#00ca10',
             allDay: true,
-            accepted: true
+            accepted: true, 
+            visible: true
         });
 
         myEvents.push({
@@ -262,7 +263,7 @@ export const TaskView = () => {
                 <div className='taskViewDiv'>
                     <Navbar />
                     <div className='btnDiv'>
-                        <button onClick={updateToListView} className='viewBtn'>List</button>
+                        <button onClick={updateToListView} className='otherBtn'>List</button>
                         <div className='space'>
                         </div>
                         <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
@@ -275,8 +276,8 @@ export const TaskView = () => {
                             console.log(myEvents);
                             return (
                                     <div className='taskItem'>
-                                        <h3>{task.title}</h3>
-                                        <p>{task.description}</p>
+                                        <h3 className='taskTitle'>{task.title}</h3>
+                                        <p className='taskDesc'>{task.description}</p>
                                     </div>
                             )
                         })}
@@ -292,7 +293,7 @@ export const TaskView = () => {
                     <div className='taskViewDiv'>
                         <Navbar />
                         <div className='btnDiv'>
-                            <button onClick={updateToListView} className='viewBtn'>List</button>
+                            <button onClick={updateToListView} className='otherBtn'>List</button>
                             <div className='space'>
                             </div>
                             <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
@@ -329,7 +330,7 @@ export const TaskView = () => {
                         <button onClick={createTask} className='viewBtn'>Submit</button>
                         <div className='space'>
                         </div>
-                        <button className='cancelBtn'>Cancel</button>
+                        <button className='otherBtn'>Cancel</button>
                     </div>
                 </form>
             </div>
@@ -342,7 +343,7 @@ export const TaskView = () => {
                 <button onClick={updateToListView} className='viewBtn'>List</button>
                 <div className='space'>
                 </div>
-                <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+                <button onClick={updateToCalendarView} className='otherBtn'>Calendar</button>
             </div>
             <CalendarView />
         </div>

@@ -92,11 +92,11 @@ const Navbar = () => {
         right: "20px",
         position: "fixed",
         fontSize: "x-large",
-        backgroundColor: "#F2FDFF"
+        backgroundColor: "#DDBEA9"
     }
 
     let trackedTasksStyle = {
-        backgroundColor: "#F2FDFF",
+        backgroundColor: "#DDBEA9",
         width: "98%",
         height: "52%",
         borderRadius: "25px"
@@ -124,11 +124,7 @@ const Navbar = () => {
                 <div className="card" style={profileStyle}>
                     <div className="container" style={{height: "98%"}}>
                         <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
-<<<<<<< HEAD
-                        <h1 style={{marginLeft:"48.5%", fontSize: "x-large", textDecoration: "underline"}}><b>Profile</b></h1>
-=======
                         <h1 style={{marginLeft:"48.5%", fontSize: "x-large"}}><b>Profile</b></h1>
->>>>>>> CalendarView
                         <div style={{marginLeft: "25px", height: "90%"}}>
                             <h2>Name</h2>
                             <input placeholder={currentUser.displayName}/>
@@ -160,11 +156,7 @@ const Text2 = styled.div`
     align-items: center;
     justify-content: left;
     font-size: 35px;
-<<<<<<< HEAD
-    font-family: Roboto;
-=======
     font-family: 'Poppins', sans-serif;
->>>>>>> CalendarView
     font-weight: 600;
     color: #135bc6;
     top: 36px;
