@@ -186,7 +186,8 @@ export const TaskView = () => {
             start: new Date(),
             color: '#fbf3ea',
             allDay: true,
-            accepted: true
+            accepted: true,
+            visible: true
         });
 
         myEvents.push({
@@ -195,7 +196,8 @@ export const TaskView = () => {
             start: new Date(),
             color: '#fbf3ea',
             allDay: true,
-            accepted: true
+            accepted: true,
+            visible: true
         });
         setState(() => {
             return {
