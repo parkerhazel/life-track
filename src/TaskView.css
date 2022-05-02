@@ -13,7 +13,7 @@
 .title {
     text-align: center;
     /* color: #135bc6; */
-    color: black;
+    color: #101935;
 }
 
 .user {
@@ -29,6 +29,9 @@
     width: 100px;
     height: 50px;
     font-size: 25px;
+    border-radius: 20px;
+    background-color: #6B705C;
+    color: white;
 }
 
 .taskItem {
@@ -40,12 +43,49 @@
     margin-top: 5px;
     position: relative;
     text-align: left;
-    background-color: #fbf3ea;
+    background-color: #FFE8D6;
     border-radius: 15px;
 }
 
+.viewBtn {
+    padding: 10px;
+    background-color: #6B705C;
+    color: white;
+    font-family: 'Poppins';
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.cancelBtn {
+    padding: 10px;
+    background-color: #DDBEA9;
+    color: black;
+    font-family: 'Poppins';
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.btnDiv {
+    padding: 30px;
+    display: inline-block;
+}
+
+.space {
+    width: 4px;
+    height: auto;
+    display: inline-block;
+}
+
 #taskContainer {
-    background-color: #d0dbe1;
+    background-color: #CB997E;
     margin: auto;
     width: 65%;
     position: relative;
@@ -54,31 +94,24 @@
     border-radius: 15px;
 }
 
-.btnContainer {
-    padding-top: 20px;
-    padding-left: 1500px;
+.actionBtns {
+    padding: 20px;
 }
-.viewBtn {
-    width: 200px;
-    cursor: pointer;
-    background: #FFFF;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    padding: 7px 0px 6px 0px;
-    align-self: center;
-    text-align: center;
-    font-size: 15px;
-    margin-right: 20px;
+.nameBox {
+    width: 100px;
 }
 
-.calendarContainer {
-    height: 100%;
-    margin-left: 700px;
+.descBox {
+    width: 200px;
+    height: 50px;
+}
+
+.createTaskDiv {
     padding: 100px;
-    align-self: center;
-    display: block;
-    position: relative;
+    align-items: center;
+    padding-left: 35%
+}
+
+.label {
+    padding: 20px;
 }
