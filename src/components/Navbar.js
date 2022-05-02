@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React, {useState} from "react";
 import { auth } from "../App";
+import { myEvents } from "../TaskView";
+import './Navbar.css';
 
 export function getCurrentDate(separator=''){
 
@@ -44,7 +46,7 @@ const Navbar = () => {
         backgroundColor: "#B7B7A4",
         display: "flex",
         flexDirection: "row",
-        height: "70px"
+        height: "70px",
     }
     let dateStyle = {
         fontSize: "30px",
@@ -76,8 +78,8 @@ const Navbar = () => {
     }
 
     let profileStyle = {
-        position: "absolute",
-        zIndex: "1",
+        position: "fixed",
+        zIndex: "100",
         margin: "25px 25px 25px 25px",
         width: "96%",
         height: "82%",
@@ -96,10 +98,37 @@ const Navbar = () => {
     }
 
     let trackedTasksStyle = {
+        overflow: 'auto',
         backgroundColor: "#F2FDFF",
         width: "98%",
         height: "52%",
         borderRadius: "25px"
+    }
+
+    const deleteTask = (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        console.log(event.target.parentElement.parentElement.id);
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        console.log(idx);
+        myEvents[idx].visible = false;
+        console.log(myEvents);
+    }
+
+    const completeTask = (event) => {
+        event.preventDefault();
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        if (event.target.innerHTML === 'Complete') {
+            event.target.innerHTML = 'Undo Completion';
+            myEvents[idx].color = '#00ca10';
+            event.target.parentElement.parentElement.style.backgroundColor = '#00ca10';
+        } else {
+            event.target.innerHTML = 'Complete'
+            myEvents[idx].color = '#fbf3ea'
+            event.target.parentElement.parentElement.style.backgroundColor = '#fbf3ea';
+        }
     }
 
     let [showProfile, setShowProfile] = useState(false);
@@ -111,33 +140,77 @@ const Navbar = () => {
         setShowProfile(false)
     }
 
-    let tasks = (<div style={{paddingLeft: "20px", paddingTop:"15px"}}>No Tracked Tasks.</div>)
+    let tasks = (<div style={{paddingLeft: "20px", paddingTop:"15px"}}>{myEvents.map((task, index) => {
+        if (task.visible) {
+            let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+            return (
+                <div className='profileTaskItem' id={`taskItem-${index}`} style={{backgroundColor:color}}>
+                    <div className='taskInfo'>
+                        <h3>{task.title}</h3>
+                        <p>{task.description}</p>
+                    </div>
+                    <div className='taskItemButtons'>
+                        <button className='taskItemEdit'>Edit</button>
+                        <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
+                        <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
+                    </div>
+                </div>
+            )
+        }
+    })}</div>)
 
     if (showProfile) {
-        return (
-            <div>
-                <div style={outerStyle}>
-                    <Text2>LIFETRACK</Text2>
-                    <div style={dateStyle}>{getCurrentDate()}</div>
-                    <button style={buttonStyle} onClick={hideProfileHandler}>Profile</button>
-                </div>
-                <div className="card" style={profileStyle}>
-                    <div className="container" style={{height: "98%"}}>
-                        <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
-                        <h1 style={{marginLeft:"48.5%", fontSize: "x-large"}}><b>Profile</b></h1>
-                        <div style={{marginLeft: "25px", height: "90%"}}>
-                            <h2>Name</h2>
-                            <input placeholder={currentUser.displayName}/>
-                            <h2>Email</h2>
-                            <input placeholder={currentUser.email}/>
-                            <h2>Tracked Tasks</h2>
-                            <div style={trackedTasksStyle}>{tasks}</div>
+        if (myEvents.length > 0) {
+            return (
+                <div>
+                    <div style={outerStyle}>
+                        <Text2>LIFETRACK</Text2>
+                        <div style={dateStyle}>{getCurrentDate()}</div>
+                        <button style={buttonStyle} onClick={hideProfileHandler}>Profile</button>
+                    </div>
+                    <div className="card" style={profileStyle}>
+                        <div className="container" style={{height: "98%"}}>
+                            <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
+                            <h1 style={{marginLeft:"48.5%", fontSize: "x-large"}}><b>Profile</b></h1>
+                            <div style={{marginLeft: "25px", height: "90%"}}>
+                                <h2>Name</h2>
+                                <input placeholder={currentUser.displayName}/>
+                                <h2>Email</h2>
+                                <input placeholder={currentUser.email}/>
+                                <h2>Tracked Tasks</h2>
+                                <div style={trackedTasksStyle}>{tasks}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <div style={outerStyle}>
+                        <Text2>LIFETRACK</Text2>
+                        <div style={dateStyle}>{getCurrentDate()}</div>
+                        <button style={buttonStyle} onClick={hideProfileHandler}>Profile</button>
+                    </div>
+                    <div className="card" style={profileStyle}>
+                        <div className="container" style={{height: "98%"}}>
+                            <button style={closeButtonStyle} onClick={hideProfileHandler}>X</button>
+                            <h1 style={{marginLeft:"48.5%", fontSize: "x-large"}}><b>Profile</b></h1>
+                            <div style={{marginLeft: "25px", height: "90%"}}>
+                                <h2>Name</h2>
+                                <input placeholder={currentUser.displayName}/>
+                                <h2>Email</h2>
+                                <input placeholder={currentUser.email}/>
+                                <h2>Tracked Tasks</h2>
+                                <div style={trackedTasksStyle}>{tasks}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            )
+        }
     } else {
         return (
             <div style={outerStyle}>
