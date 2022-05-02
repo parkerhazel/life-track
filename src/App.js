@@ -4,6 +4,11 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { TaskView } from "./TaskView";
 import React, {useState} from "react";
 import styled from "styled-components";
+import { CalendarView } from './CalendarView';
+import tasks from './TaskView';
+import { myEvents } from "./TaskView";
+
+console.log(myEvents);
 
 export const auth = getAuth(app);
 
@@ -23,12 +28,24 @@ signInWithEmailAndPassword(auth, email, password)
     console.log(errorCode, errorMessage)
 });
 
+
 export default function App() {
 
     let [currentPage, setCurrentPage] = useState("Login")
 
+    // document.getElementById("listViewButton").addEventListener("click", switchToListView);
+    // document.getElementById("calendarViewButton").addEventListener("click", switchToCalendarView);
+
     function changeCurrentPage() {
-        setCurrentPage("Task View");
+        setCurrentPage("taskView");
+    }
+
+    function switchToListView() {
+        setCurrentPage('taskView');
+    }
+
+    function switchToCalendarView() {
+        setCurrentPage('calendarView');
     }
 
     if (currentPage==="Login") {
@@ -43,7 +60,7 @@ export default function App() {
         </LoginRoot>
         );
     }
-    else {
+    else if (currentPage === 'taskView') {
         return <TaskView />;
     }
 
