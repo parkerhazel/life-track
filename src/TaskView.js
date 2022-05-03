@@ -3,7 +3,9 @@ import app from "./config/firebase";
 import Navbar from "./components/Navbar"
 import './TaskView.css'
 import {useState} from 'react';
-import {CalendarView} from './CalendarView'
+import {CalendarView} from './CalendarView';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 let auth = getAuth(app);
 export let tasks = [];
@@ -14,153 +16,137 @@ const monday = now.getDate() - day + (day === 0 ? -6 : 1);
 export let myEvents = [{
     start: new Date('May 1, 2022 03:24:00'),
     title: 'Go to Gym',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 
 }, {
     start: new Date('June 23, 2022'),
     title: 'John OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date('May 8, 2022'),
     title: 'Take out trash',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday),
     title: 'Emma OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 1),
     title: 'Mark OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 1),
     title: 'Carol OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Luke OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Carol OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Kate OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Dean OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Emma OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 2),
     title: 'Jason OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 3),
     title: 'Jason OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'Ryan OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'John OFF (APPROVED)',
-    color: '#00ca10',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: true
+    accepted: true,
+    visible: true
 }, {
     start: new Date(now.getFullYear(), now.getMonth(), monday + 4),
     title: 'Dean OFF (PROPOSED)',
-    color: '#e7b300',
+    color: '#fbf3ea',
     allDay: true,
     description: 'test',
-    accepted: false
+    accepted: false,
+    visible: true
 }];
 
-export let myView = 'listView';
-export function setMyView(val) {
-    myView = val;
-}
-
-// export const CalendarView = () => {
-//     const view = React.useMemo(() => {
-//         return {
-//             calendar: {
-//                 type: 'month'
-//             }
-//         };
-//     }, []);
-    
-//     const orderMyEvents = React.useCallback((event) => {
-//         return event.accepted ? 1 : -1;
-//     }, []);
-
-//     return (
-//         <Eventcalendar
-//             theme="ios" 
-//             themeVariant="light"
-//             clickToCreate={false}
-//             dragToCreate={false}
-//             dragToMove={false}
-//             dragToResize={false}
-//             view={view}
-//             data={myEvents}
-//             eventOrder={orderMyEvents}
-//        />
-//     ); 
-// }
-
 export const TaskView = () => {
-    const [state, setState] = useState({view: 'calendarView', tasks: [], description: '', name: '', recurring: null})
+    const [state, setState] = useState({view: 'listView', tasks: [], description: '', name: '', recurring: null})
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleCreateTask = (event) => {
         event.preventDefault();
@@ -177,10 +163,9 @@ export const TaskView = () => {
                 tasks: prevState.tasks, 
                 description: prevState.description, 
                 name: target.value,
-                recurring: prevState.recurring
+                recurring: prevState.recurring,
             };
         });
-        console.log(state);
     }
 
     const handleDescriptionInputChange = ({target}) => {
@@ -191,43 +176,95 @@ export const TaskView = () => {
                 description: target.value,
                 name: prevState.name,
                 recurring: prevState.recurring
-                
             }
         });
-        console.log(state);
     }
 
     const createTask = () => {
-        let currTasks = state.tasks;
-        currTasks.push({
-            title: state.name,
-            description: state.description,
-            start: new Date(),
-            color: '#00ca10',
-            allDay: true,
-            accepted: true, 
-            visible: true
-        });
+        // let currTasks = state.tasks;
+        // currTasks.push({
+        //     title: state.name,
+        //     description: state.description,
+        //     start: startDate,
+        //     color: '#fbf3ea',
+        //     allDay: true,
+        //     accepted: true,
+        //     visible: true
+        // });
 
         myEvents.push({
             title: state.name,
             description: state.description,
-            start: new Date(),
-            color: '#00ca10',
+            start: startDate,
+            color: '#fbf3ea',
             allDay: true,
-            accepted: true
+            accepted: true,
+            visible: true
         });
         setState(() => {
             return {
                 view: 'listView',
-                tasks: currTasks,
+                tasks: [],
+                description: '',
+                name: '',
+                recurring: null,
+                date: null
+            }
+        });
+
+        setStartDate(() => new Date());
+    }
+
+    const cancelTask = () => {
+        setState((prevState) => {
+            return {
+                view: 'listView',
+                tasks: prevState.tasks,
                 description: '',
                 name: '',
                 recurring: null
-                
-            }
+            };
         });
+
+        setStartDate(() => new Date());
     }
+
+    const deleteTask = (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        console.log(event.target.parentElement.parentElement.id);
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        console.log(idx);
+        myEvents[idx].visible = false;
+        console.log(myEvents);
+    }
+
+    const completeTask = (event) => {
+        event.preventDefault();
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        if (event.target.innerHTML === 'Complete') {
+            event.target.innerHTML = 'Undo Completion';
+            myEvents[idx].color = '#00ca10';
+            event.target.parentElement.parentElement.style.backgroundColor = '#00ca10';
+        } else {
+            event.target.innerHTML = 'Complete'
+            myEvents[idx].color = '#fbf3ea'
+            event.target.parentElement.parentElement.style.backgroundColor = '#fbf3ea';
+        }
+    }
+
+    const filterTasks = () => {
+        let filteredTasks = [];
+        for (let task in myEvents) {
+            console.log(task);
+            if (task.visible) {
+                filteredTasks.push(task);
+            }
+        }
+        return filteredTasks;
+    };
 
     const updateToCalendarView = () => {
         setState((prevState) => {
@@ -240,7 +277,6 @@ export const TaskView = () => {
                 
             }
         });
-        console.log(state);
     }
 
     const updateToListView = () => {
@@ -254,7 +290,6 @@ export const TaskView = () => {
                 
             }
         });
-        console.log(state);
     }
 
     if (state.view === 'listView') {
@@ -272,14 +307,26 @@ export const TaskView = () => {
                         <h1 className='title'>Current Tasks</h1>
                     </div>
                     <div id='taskContainer'>
-                        {myEvents.map(task => {
-                            console.log(myEvents);
-                            return (
-                                    <div className='taskItem'>
-                                        <h3 className='taskTitle'>{task.title}</h3>
-                                        <p className='taskDesc'>{task.description}</p>
+                        {myEvents.map((task, index) => {
+                            if (task.visible) {
+                                let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+                                let dateArr = task.start.toString().split(' ');
+                                let dateStr = dateArr.slice(0, 4).join(' ');
+                                return (
+                                    <div className='taskItem' id={`taskItem-${index}`} style={{backgroundColor:color}}>
+                                        <div className='taskInfo'>
+                                            <h3>{task.title}</h3>
+                                            <p>{task.description}</p>
+                                            <p className='date'>{dateStr}</p>
+                                        </div>
+                                        <div className='taskItemButtons'>
+                                            <button className='taskItemEdit'>Edit</button>
+                                            <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
+                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
+                                        </div>
                                     </div>
-                            )
+                                )
+                            }
                         })}
                     </div>
                     <div>
@@ -309,32 +356,102 @@ export const TaskView = () => {
         }
     // The Create Task View Still Needs To Be Fixed, This Was For Testing Creating Tasks
     } else if (state.view === 'createTaskView') {
-        return (
-            <div className='createTaskDiv'>
-                <h1 className='createTaskTitle'>Create Task</h1>
-                <form>
-                    <label className='label' htmlFor='name'>Name</label>
-                    <input className='nameBox' type='text' id='name' onChange={handleNameInputChange} />
-                    <br />
-                    <label className='label' htmlFor='description' >Description</label>
-                    <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
-                    <br/>
-                    {/* <div id='recurringDiv'>
-                        <p>Recurring?</p>
-                        <label htmlFor='recurringY'>Y</label>
-                        <input type='checkbox' id='recurringY' />
-                        <label htmlFor='recurringN'>N</label>
-                        <input type='checkbox' id='recurringN' />
-                    </div> */}
-                    <div className='actionBtns'>
-                        <button onClick={createTask} className='viewBtn'>Submit</button>
-                        <div className='space'>
+        // return (
+        //     <div className='createTaskDiv'>
+        //         <h1 className='createTaskTitle'>Create Task</h1>
+        //         <form>
+        //             <label className='label' htmlFor='name'>Name</label>
+        //             <input className='nameBox' type='text' id='name' onChange={handleNameInputChange} />
+        //             <br />
+        //             <label className='label' htmlFor='description' >Description</label>
+        //             <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
+        //             <br/>
+        //             <div className='actionBtns'>
+        //                 <button onClick={createTask} className='viewBtn'>Submit</button>
+        //                 <div className='space'>
+        //                 </div>
+        //                 <button className='cancelBtn'>Cancel</button>
+        //             </div>
+        //         </form>
+        //     </div>
+        // )
+
+        // return (
+        //     <div className="createBox">
+        //         <div>
+            
+        //             <h4 className="createTaskTitle">Create Task</h4>
+        //             <form className="nameinput">
+        //                 <div className="namelabel">
+        //                     <label className="formLabel" htmlFor="name">Name:        </label>
+        //                     <input type="text" id="name" onChange={handleNameInputChange} ></input>
+        //                 </div>
+                    
+        //                 <div className="descriptionlabel">
+        //                     <label className="formLabel" htmlFor="description">Description:  </label>
+        //                     <input type="text" id="description" onChange={handleDescriptionInputChange}></input>
+        //                 </div>
+        //                 <div>
+        //                     <label htmlFor="date">Date:                     </label>
+        //                     <input type="text" id="date"></input>
+        //                     {/* <DatePicker id='date' selected={startDate} onChange={(date:Date) => setStartDate(date)} /> */}
+        //                 </div>
+                        <div className='actionBtns'>
+                            <button onClick={createTask} className='viewBtn'>Submit</button>
+                            <div className='space'>
+                            </div>
+                            <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
                         </div>
-                        <button className='otherBtn'>Cancel</button>
+        //             </form>
+        //         </div>
+        //     </div>
+
+        // )
+        return (
+        <div className="createBox">
+            <div>
+            
+                <h4 className="createTaskTitle">Create Task</h4>
+                <form className="nameinput">
+                    <div className="namelabel">
+                        <label className="formLabel" for="name">Name:   </label>
+                        <input type="text" id="name" onChange={handleNameInputChange} ></input>
+                    </div>
+                
+                    <div className="descriptionlabel">
+                        <label className="formLabel" for="desc">Description:  </label>
+                        <input type="text" id="desc" onChange={handleDescriptionInputChange}></input>
+                    </div>
+                    <div>
+                        <p>Date:</p>
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
+                    <div className='actionBtns'>
+                            <button onClick={createTask} className='viewBtn'>Submit</button>
+                            <div className='space'>
+                            </div>
+                            <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
                     </div>
                 </form>
+                
+                {/* <fieldset className="recurringfield">
+                    <legend>Recurring Task:</legend>
+                    <div id="yesCheck">
+                        <input type="checkbox" id="yesbox" name="yesbox"></input>
+                        <label for="yesbox">Yes</label>
+                    </div>
+                    <div id="noCheck">
+                        <input type="checkbox" id="nobox" name="nobox"></input>
+                        <label for="nobox">No</label>
+                    </div>
+                </fieldset> */}
+                <div>
+                    
+                </div>
             </div>
+        </div>
         )
+
     } else if (state.view === 'calendarView') {
         return (
         <div>
@@ -349,9 +466,4 @@ export const TaskView = () => {
         </div>
         );
     }
-  
   }
-
-export const TaskItem = () => {
-
-}
