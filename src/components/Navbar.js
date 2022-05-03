@@ -158,7 +158,7 @@ const Text2 = styled.div`
     font-size: 35px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    color: #135bc6;
+    color: #582F0E;
     top: 36px;
     margin-left: 20px;
 `;
