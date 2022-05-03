@@ -157,6 +157,14 @@ export const TaskView = () => {
         });
     }
 
+    const handleCreateTaskFromCalendar = (event) => {
+        event.preventDefault();
+        let currTasks = state.tasks;
+        setState(() => {
+            return {view: 'createTaskFromCalendarView', tasks: currTasks, description: '', name: '', recurring: null}
+        });
+    }
+
 
     const handleCalendarView = (event) => {
         event.preventDefault();
@@ -237,11 +245,65 @@ export const TaskView = () => {
         });
     }
 
+    const createTaskFromCalendar = (event) => {
+        event.preventDefault()
+        // let currTasks = state.tasks;
+        // currTasks.push({
+        //     title: state.name,
+        //     description: state.description,
+        //     start: startDate,
+        //     color: '#fbf3ea',
+        //     allDay: true,
+        //     accepted: true,
+        //     visible: true
+        // });
+
+        myEvents.push({
+            title: state.name,
+            description: state.description,
+            start: startDate,
+            color: '#fbf3ea',
+            allDay: true,
+            accepted: true,
+            visible: true
+        });
+        setState(() => {
+            return {
+                view: 'calendarView',
+                tasks: [],
+                description: '',
+                name: '',
+                recurring: null,
+                date: null
+            }
+        });
+
+        setStartDate(() => new Date());
+        myEvents.sort((a, b) => {
+            return a.start - b.start;
+        });
+    }
+
     const cancelTask = (event) => {
         event.preventDefault()
         setState((prevState) => {
             return {
                 view: 'listView',
+                tasks: prevState.tasks,
+                description: '',
+                name: '',
+                recurring: null
+            };
+        });
+
+        setStartDate(() => new Date());
+    }
+
+    const cancelTaskFromCalendar = (event) => {
+        event.preventDefault()
+        setState((prevState) => {
+            return {
+                view: 'calendarView',
                 tasks: prevState.tasks,
                 description: '',
                 name: '',
@@ -488,6 +550,48 @@ export const TaskView = () => {
         </div>
         )
 
+    }
+    else if (state.view === 'createTaskFromCalendarView') {
+        return (
+        <div className="createBox">
+            <div>
+            
+                <h4 className="createTaskTitle">Create Task</h4>
+                <form className="nameinput">
+                    <div className="namelabel">
+                        <div className='labelDiv'>
+                        <label className="formLabel" htmlFor="name">Name:   </label>
+                        </div>
+                        <input type="text" id="name" onChange={handleNameInputChange} ></input>
+                    </div>
+                    <div className='space'>
+                    </div>
+                    <div className="descriptionlabel">
+                        <div className='labelDiv'>
+                        <label className="formLabel" htmlFor="desc">Description:  </label>
+                        </div>
+                        <input type="text" id="desc" onChange={handleDescriptionInputChange}></input>
+                    </div>
+                    <div className='dateDiv'>
+                        <div className='labelDiv'>
+                        <p className='dateTitle'>Date: </p>
+                        </div>
+                        <DatePicker className='pickDate' selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
+                    <div className='actionBtns'>
+                            <button onClick={createTaskFromCalendar} className='viewBtn'>Submit</button>
+                            <div className='space'>
+                            </div>
+                            <button className='otherBtn' onClick={cancelTaskFromCalendar}>Cancel</button>
+                    </div>
+                </form>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+        )
+
     } else if (state.view === 'calendarView') {
         return (
         <div>
@@ -497,6 +601,9 @@ export const TaskView = () => {
                 <div className='space'>
                 </div>
                 <button onClick={updateToCalendarView} className='otherBtn'>Calendar</button>
+            </div>
+            <div>
+                <button onClick={handleCreateTaskFromCalendar} className='newTaskButton'>+ Task</button>
             </div>
             <CalendarView />
         </div>
