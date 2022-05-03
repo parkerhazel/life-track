@@ -147,6 +147,7 @@ export let myEvents = [{
 export const TaskView = () => {
     const [state, setState] = useState({view: 'listView', tasks: [], description: '', name: '', recurring: null})
     const [startDate, setStartDate] = useState(new Date());
+    const [editIdx, setEditIdx] = useState(null);
 
     const handleCreateTask = (event) => {
         event.preventDefault();
@@ -239,8 +240,82 @@ export const TaskView = () => {
         let id = event.target.parentElement.parentElement.id;
         let idx = parseInt(id.split('-')[1]);
         console.log(idx);
-        myEvents[idx].visible = false;
+        // myEvents[idx].visible = false;
+        myEvents.splice(idx, 1)
+        setState((prevState) => {
+            return {
+                view: 'listView',
+                tasks: prevState.tasks,
+                description: prevState.description,
+                name: prevState.name,
+                recurring: prevState.recurring
+                
+            }
+        });
         console.log(myEvents);
+    }
+
+    const editTask = (event) => {
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        let parent = document.getElementById(id);
+        let children = parent.firstChild.childNodes;
+        let counter = 0;
+        let name = null;
+        let description = null;
+        let date = null;
+        while (counter < children.length) {
+            console.log(`child idx: ${counter}`);
+            console.log(`child inner HTML: ${children[counter].innerHTML}`);
+            if (counter === 0) {
+                name = children[counter].innerHTML;
+            } else if (counter === 1) {
+                description  = children[counter].innerHTML;
+            } else if (counter === 2) {
+                date = children[counter].innerHTML;
+            }
+
+            counter++;
+        }
+        setState((prevState) => {
+            return {
+                view: 'editView',
+                tasks: prevState.tasks,
+                description: description,
+                name: name,
+                recurring: prevState.recurring
+            }
+        });
+        let dateSplit = date.split(' ');
+        let dateStr = `${dateSplit[1]} ${dateSplit[2]}, ${dateSplit[3]}`;
+        setStartDate(() => new Date(dateStr));
+        setEditIdx(() => idx);
+    }
+
+    const saveEditedTask = () => {
+        myEvents.splice(editIdx, 1);
+        myEvents.push({
+            title: state.name,
+            description: state.description,
+            start: startDate,
+            color: '#fbf3ea',
+            allDay: true,
+            accepted: true,
+            visible: true
+        });
+        setState(() => {
+            return {
+                view: 'listView',
+                tasks: [],
+                description: '',
+                name: '',
+                recurring: null,
+                date: null
+            }
+        });
+
+        setStartDate(() => new Date());
+        setEditIdx(() => null);
     }
 
     const completeTask = (event) => {
@@ -312,7 +387,7 @@ export const TaskView = () => {
                                             <p className='date'>{dateStr}</p>
                                         </div>
                                         <div className='taskItemButtons'>
-                                            <button className='taskItemEdit'>Edit</button>
+                                            <button className='taskItemEdit' onClick={editTask}>Edit</button>
                                             <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
                                             <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
                                         </div>
@@ -394,5 +469,50 @@ export const TaskView = () => {
             <CalendarView />
         </div>
         );
+    } else if (state.view === 'editView') {
+        return (
+            <div className="createBox">
+                <div>
+                
+                    <h4 className="createTaskTitle">Edit Task</h4>
+                    <form className="nameinput">
+                        <div className="namelabel">
+                            <label className="formLabel" for="name">Name:   </label>
+                            <input type="text" id="name" onChange={handleNameInputChange} value={state.name}></input>
+                        </div>
+                    
+                        <div className="descriptionlabel">
+                            <label className="formLabel" for="desc">Description:  </label>
+                            <input type="text" id="desc" onChange={handleDescriptionInputChange} value={state.description}></input>
+                        </div>
+                        <div>
+                            <p>Date:</p>
+                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
+                        <div className='actionBtns'>
+                                <button onClick={saveEditedTask} className='viewBtn'>Save</button>
+                                <div className='space'>
+                                </div>
+                                <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
+                        </div>
+                    </form>
+                    
+                    {/* <fieldset className="recurringfield">
+                        <legend>Recurring Task:</legend>
+                        <div id="yesCheck">
+                            <input type="checkbox" id="yesbox" name="yesbox"></input>
+                            <label for="yesbox">Yes</label>
+                        </div>
+                        <div id="noCheck">
+                            <input type="checkbox" id="nobox" name="nobox"></input>
+                            <label for="nobox">No</label>
+                        </div>
+                    </fieldset> */}
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+            )
     }
   }
