@@ -148,12 +148,30 @@ export let myEvents = [{
 export const TaskView = () => {
     const [state, setState] = useState({view: 'listView', tasks: [], description: '', name: '', recurring: null})
     const [startDate, setStartDate] = useState(new Date());
+    const [editIdx, setEditIdx] = useState(null);
 
     const handleCreateTask = (event) => {
         event.preventDefault();
         let currTasks = state.tasks;
         setState(() => {
             return {view: 'createTaskView', tasks: currTasks, description: '', name: '', recurring: null}
+        });
+    }
+
+
+    const handleCalendarView = (event) => {
+        event.preventDefault();
+        let currTasks = state.tasks;
+        setState(() => {
+            return {view: 'calendarView', tasks: currTasks, discription: '', name: '', recurring: null}
+        });
+    }
+
+    const handleListView = (event) => {
+        event.preventDefault();
+        let currTasks = state.tasks;
+        setState(() => {
+            return {view: 'listView', tasks: currTasks, discription: '', name: '', recurring: null}
         });
     }
 
@@ -181,7 +199,8 @@ export const TaskView = () => {
         });
     }
 
-    const createTask = () => {
+    const createTask = (event) => {
+        event.preventDefault()
         // let currTasks = state.tasks;
         // currTasks.push({
         //     title: state.name,
@@ -214,9 +233,13 @@ export const TaskView = () => {
         });
 
         setStartDate(() => new Date());
+        myEvents.sort((a, b) => {
+            return a.start - b.start;
+        });
     }
 
-    const cancelTask = () => {
+    const cancelTask = (event) => {
+        event.preventDefault()
         setState((prevState) => {
             return {
                 view: 'listView',
@@ -237,8 +260,86 @@ export const TaskView = () => {
         let id = event.target.parentElement.parentElement.id;
         let idx = parseInt(id.split('-')[1]);
         console.log(idx);
-        myEvents[idx].visible = false;
+        // myEvents[idx].visible = false;
+        myEvents.splice(idx, 1)
+        setState((prevState) => {
+            return {
+                view: 'listView',
+                tasks: prevState.tasks,
+                description: prevState.description,
+                name: prevState.name,
+                recurring: prevState.recurring
+                
+            }
+        });
         console.log(myEvents);
+    }
+
+    const editTask = (event) => {
+        let id = event.target.parentElement.parentElement.id;
+        let idx = parseInt(id.split('-')[1]);
+        let parent = document.getElementById(id);
+        let children = parent.firstChild.childNodes;
+        let counter = 0;
+        let name = null;
+        let description = null;
+        let date = null;
+        while (counter < children.length) {
+            console.log(`child idx: ${counter}`);
+            console.log(`child inner HTML: ${children[counter].innerHTML}`);
+            if (counter === 0) {
+                name = children[counter].innerHTML;
+            } else if (counter === 1) {
+                description  = children[counter].innerHTML;
+            } else if (counter === 2) {
+                date = children[counter].innerHTML;
+            }
+
+            counter++;
+        }
+        setState((prevState) => {
+            return {
+                view: 'editView',
+                tasks: prevState.tasks,
+                description: description,
+                name: name,
+                recurring: prevState.recurring
+            }
+        });
+        let dateSplit = date.split(' ');
+        let dateStr = `${dateSplit[1]} ${dateSplit[2]}, ${dateSplit[3]}`;
+        setStartDate(() => new Date(dateStr));
+        setEditIdx(() => idx);
+    }
+
+    const saveEditedTask = (event) => {
+        event.preventDefault()
+        myEvents.splice(editIdx, 1);
+        myEvents.push({
+            title: state.name,
+            description: state.description,
+            start: startDate,
+            color: '#fbf3ea',
+            allDay: true,
+            accepted: true,
+            visible: true
+        });
+        setState(() => {
+            return {
+                view: 'listView',
+                tasks: [],
+                description: '',
+                name: '',
+                recurring: null,
+                date: null
+            }
+        });
+
+        setStartDate(() => new Date());
+        setEditIdx(() => null);
+        myEvents.sort((a, b) => {
+            return a.start - b.start;
+        });
     }
 
     const completeTask = (event) => {
@@ -255,17 +356,6 @@ export const TaskView = () => {
             event.target.parentElement.parentElement.style.backgroundColor = '#fbf3ea';
         }
     }
-
-    const filterTasks = () => {
-        let filteredTasks = [];
-        for (let task in myEvents) {
-            console.log(task);
-            if (task.visible) {
-                filteredTasks.push(task);
-            }
-        }
-        return filteredTasks;
-    };
 
     const updateToCalendarView = () => {
         setState((prevState) => {
@@ -310,7 +400,7 @@ export const TaskView = () => {
                     <div id='taskContainer'>
                         {myEvents.map((task, index) => {
                             if (task.visible) {
-                                let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+                                let color = task.color === '#B7B7A4' ? task.color : '#fbf3ea';
                                 let dateArr = task.start.toString().split(' ');
                                 let dateStr = dateArr.slice(0, 4).join(' ');
                                 return (
@@ -321,11 +411,11 @@ export const TaskView = () => {
                                             <p className='date'>{dateStr}</p>
                                         </div>
                                         <div className='taskItemButtons'>
-                                            <button className='taskItemEdit'>Edit</button>
+                                            <button className='taskItemEdit' onClick={editTask}>Edit</button>
                                             <div className='space'> </div>
                                             <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
                                             <div className='space'> </div>
-                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#b7b7a4' ? 'Undo Completion' : 'Complete'}</button>
+                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#B7B7A4' ? 'Undo Completion' : 'Complete'}</button>
                                         </div>
                                     </div>
                                 )
@@ -375,57 +465,6 @@ export const TaskView = () => {
         ); 
     // The Create Task View Still Needs To Be Fixed, This Was For Testing Creating Tasks
     } else if (state.view === 'createTaskView') {
-        // return (
-        //     <div className='createTaskDiv'>
-        //         <h1 className='createTaskTitle'>Create Task</h1>
-        //         <form>
-        //             <label className='label' htmlFor='name'>Name</label>
-        //             <input className='nameBox' type='text' id='name' onChange={handleNameInputChange} />
-        //             <br />
-        //             <label className='label' htmlFor='description' >Description</label>
-        //             <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
-        //             <br/>
-        //             <div className='actionBtns'>
-        //                 <button onClick={createTask} className='viewBtn'>Submit</button>
-        //                 <div className='space'>
-        //                 </div>
-        //                 <button className='cancelBtn'>Cancel</button>
-        //             </div>
-        //         </form>
-        //     </div>
-        // )
-
-        // return (
-        //     <div className="createBox">
-        //         <div>
-            
-        //             <h4 className="createTaskTitle">Create Task</h4>
-        //             <form className="nameinput">
-        //                 <div className="namelabel">
-        //                     <label className="formLabel" htmlFor="name">Name:        </label>
-        //                     <input type="text" id="name" onChange={handleNameInputChange} ></input>
-        //                 </div>
-                    
-        //                 <div className="descriptionlabel">
-        //                     <label className="formLabel" htmlFor="description">Description:  </label>
-        //                     <input type="text" id="description" onChange={handleDescriptionInputChange}></input>
-        //                 </div>
-        //                 <div>
-        //                     <label htmlFor="date">Date:                     </label>
-        //                     <input type="text" id="date"></input>
-        //                     {/* <DatePicker id='date' selected={startDate} onChange={(date:Date) => setStartDate(date)} /> */}
-        //                 </div>
-                        <div className='actionBtns'>
-                            <button onClick={createTask} className='viewBtn'>Submit</button>
-                            <div className='space'>
-                            </div>
-                            <button className='otherBtn' onClick={cancelTask}>Cancel</button>
-                        </div>
-        //             </form>
-        //         </div>
-        //     </div>
-
-        // )
         return (
         <div className="createBox">
             <div>
@@ -434,7 +473,7 @@ export const TaskView = () => {
                 <form className="nameinput">
                     <div className="namelabel">
                         <div className='labelDiv'>
-                        <label className="formLabel" for="name">Name:   </label>
+                        <label className="formLabel" htmlFor="name">Name:   </label>
                         </div>
                         <input type="text" id="name" onChange={handleNameInputChange} ></input>
                     </div>
@@ -442,7 +481,7 @@ export const TaskView = () => {
                     </div>
                     <div className="descriptionlabel">
                         <div className='labelDiv'>
-                        <label className="formLabel" for="desc">Description:  </label>
+                        <label className="formLabel" htmlFor="desc">Description:  </label>
                         </div>
                         <input type="text" id="desc" onChange={handleDescriptionInputChange}></input>
                     </div>
@@ -459,18 +498,6 @@ export const TaskView = () => {
                             <button className='otherBtn' onClick={cancelTask}>Cancel</button>
                     </div>
                 </form>
-                
-                {/* <fieldset className="recurringfield">
-                    <legend>Recurring Task:</legend>
-                    <div id="yesCheck">
-                        <input type="checkbox" id="yesbox" name="yesbox"></input>
-                        <label for="yesbox">Yes</label>
-                    </div>
-                    <div id="noCheck">
-                        <input type="checkbox" id="nobox" name="nobox"></input>
-                        <label for="nobox">No</label>
-                    </div>
-                </fieldset> */}
                 <div>
                     
                 </div>
@@ -491,5 +518,50 @@ export const TaskView = () => {
             <CalendarView />
         </div>
         );
+    } else if (state.view === 'editView') {
+        return (
+            <div className="createBox">
+                <div>
+                
+                    <h4 className="createTaskTitle">Edit Task</h4>
+                    <form className="nameinput">
+                        <div className="namelabel">
+                            <label className="formLabel" htmlFor="name">Name:   </label>
+                            <input type="text" id="name" onChange={handleNameInputChange} value={state.name}></input>
+                        </div>
+                    
+                        <div className="descriptionlabel">
+                            <label className="formLabel" htmlFor="desc">Description:  </label>
+                            <input type="text" id="desc" onChange={handleDescriptionInputChange} value={state.description}></input>
+                        </div>
+                        <div>
+                            <p>Date:</p>
+                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
+                        <div className='actionBtns'>
+                                <button onClick={saveEditedTask} className='viewBtn'>Save</button>
+                                <div className='space'>
+                                </div>
+                                <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
+                        </div>
+                    </form>
+                    
+                    {/* <fieldset className="recurringfield">
+                        <legend>Recurring Task:</legend>
+                        <div id="yesCheck">
+                            <input type="checkbox" id="yesbox" name="yesbox"></input>
+                            <label for="yesbox">Yes</label>
+                        </div>
+                        <div id="noCheck">
+                            <input type="checkbox" id="nobox" name="nobox"></input>
+                            <label for="nobox">No</label>
+                        </div>
+                    </fieldset> */}
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+            )
     }
   }

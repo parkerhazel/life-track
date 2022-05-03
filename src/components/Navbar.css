@@ -1,0 +1,12 @@
+.profileTaskItem {
+    border: 1px solid black;
+    margin: auto;
+    width: 98%;
+    padding: 2px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+    text-align: left;
+    background-color: #FFE8D6;
+    border-radius: 15px;
+}
