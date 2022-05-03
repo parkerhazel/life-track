@@ -213,6 +213,9 @@ export const TaskView = () => {
         });
 
         setStartDate(() => new Date());
+        myEvents.sort((a, b) => {
+            return a.start - b.start;
+        });
     }
 
     const cancelTask = () => {
@@ -254,17 +257,6 @@ export const TaskView = () => {
             event.target.parentElement.parentElement.style.backgroundColor = '#fbf3ea';
         }
     }
-
-    const filterTasks = () => {
-        let filteredTasks = [];
-        for (let task in myEvents) {
-            console.log(task);
-            if (task.visible) {
-                filteredTasks.push(task);
-            }
-        }
-        return filteredTasks;
-    };
 
     const updateToCalendarView = () => {
         setState((prevState) => {
@@ -433,18 +425,6 @@ export const TaskView = () => {
                             <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
                     </div>
                 </form>
-                
-                {/* <fieldset className="recurringfield">
-                    <legend>Recurring Task:</legend>
-                    <div id="yesCheck">
-                        <input type="checkbox" id="yesbox" name="yesbox"></input>
-                        <label for="yesbox">Yes</label>
-                    </div>
-                    <div id="noCheck">
-                        <input type="checkbox" id="nobox" name="nobox"></input>
-                        <label for="nobox">No</label>
-                    </div>
-                </fieldset> */}
                 <div>
                     
                 </div>
