@@ -399,7 +399,7 @@ export const TaskView = () => {
                     <div id='taskContainer'>
                         {myEvents.map((task, index) => {
                             if (task.visible) {
-                                let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+                                let color = task.color === '#B7B7A4' ? task.color : '#fbf3ea';
                                 let dateArr = task.start.toString().split(' ');
                                 let dateStr = dateArr.slice(0, 4).join(' ');
                                 return (
