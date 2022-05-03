@@ -7,6 +7,7 @@ import {CalendarView} from './CalendarView';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+
 let auth = getAuth(app);
 export let tasks = [];
 
@@ -355,7 +356,23 @@ export const TaskView = () => {
                         </div>
                     </div>
             );
-        }
+            }
+    } else if (state.view === 'calendarView') {
+        return (
+            <div className='taskViewDiv'>
+                <Navbar />
+                <div className='btnContainer'>
+                     <button className='viewBtn' onClick={handleListView}>List View</button>
+                </div>
+            {/* https://www.npmjs.com/package/react-calendar  */}
+            <div className='calendarContainer'>
+                <Calendar onChange={onChange} value={value} />
+            </div>
+            <div>
+                <button onClick={handleCreateTask} className='newTaskButton'>+ Task</button>
+            </div>
+        </div>
+        ); 
     // The Create Task View Still Needs To Be Fixed, This Was For Testing Creating Tasks
     } else if (state.view === 'createTaskView') {
         // return (
