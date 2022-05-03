@@ -526,23 +526,30 @@ export const TaskView = () => {
                     <h4 className="createTaskTitle">Edit Task</h4>
                     <form className="nameinput">
                         <div className="namelabel">
+                            <div className='labelDiv'>
                             <label className="formLabel" htmlFor="name">Name:   </label>
+                            </div>
                             <input type="text" id="name" onChange={handleNameInputChange} value={state.name}></input>
                         </div>
-                    
+                        <div className='space'>
+                        </div>
                         <div className="descriptionlabel">
+                            <div className='labelDiv'>
                             <label className="formLabel" htmlFor="desc">Description:  </label>
+                            </div>
                             <input type="text" id="desc" onChange={handleDescriptionInputChange} value={state.description}></input>
                         </div>
-                        <div>
-                            <p>Date:</p>
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <div className='dateDiv'>
+                            <div className='labelDiv'>
+                            <p className='dateTitle'>Date: </p>
+                            </div>
+                            <DatePicker className='pickDate' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                         <div className='actionBtns'>
                                 <button onClick={saveEditedTask} className='viewBtn'>Save</button>
                                 <div className='space'>
                                 </div>
-                                <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
+                                <button className='otherBtn' onClick={cancelTask}>Cancel</button>
                         </div>
                     </form>
                     
