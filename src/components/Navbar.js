@@ -51,7 +51,8 @@ const Navbar = () => {
         display: "flex",
         alignItems: "center",
         width: "12%",
-        margin: "0 auto"
+        margin: "0 auto",
+        color: "#582F0E"
     }
 
     let buttonStyle = {
@@ -72,7 +73,8 @@ const Navbar = () => {
         fontSize: "25px",
         fontFamily: "Inter",
         fontWeight: "400",
-        marginRight: "20px"
+        marginRight: "20px",
+        color: "#582F0E"
     }
 
     let profileStyle = {
