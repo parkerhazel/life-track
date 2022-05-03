@@ -414,7 +414,7 @@ export const TaskView = () => {
                                             <div className='space'> </div>
                                             <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
                                             <div className='space'> </div>
-                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#b7b7a4' ? 'Undo Completion' : 'Complete'}</button>
+                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#B7B7A4' ? 'Undo Completion' : 'Complete'}</button>
                                         </div>
                                     </div>
                                 )
