@@ -115,3 +115,47 @@
 .label {
     padding: 20px;
 }
+
+.createTaskTitle {
+    margin-left: 45%;
+    padding-bottom: 25px;
+    padding-top: 5px;
+    
+  }
+
+.createBox {
+    background-color: #D0DBE1;
+    border: 30px;
+    border-radius: 10px;
+    border-color: #FBF3BA;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
+
+.nameinput {
+    padding-bottom: 30px;
+    padding-left: 5px;
+}
+
+#name {
+    height: 30px;
+    width: 300px;
+    border-width: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    
+}
+
+.formLabel {
+    padding-right: 10px;
+}
+
+#desc {
+    height: 70px;
+    width: 300px;
+    border-radius: 8px;
+    border-width: 0;
+    font-size: 14px;
+    
+}
