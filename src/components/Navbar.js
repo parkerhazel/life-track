@@ -56,7 +56,8 @@ const Navbar = () => {
         display: "flex",
         alignItems: "center",
         width: "12%",
-        margin: "0 auto"
+        margin: "0 auto",
+        color: "#582F0E"
     }
 
     let buttonStyle = {
@@ -77,7 +78,8 @@ const Navbar = () => {
         fontSize: "25px",
         fontFamily: "Inter",
         fontWeight: "400",
-        marginRight: "20px"
+        marginRight: "20px",
+        color: "#582F0E"
     }
 
     let profileStyle = {
@@ -98,12 +100,12 @@ const Navbar = () => {
         right: "20px",
         position: "fixed",
         fontSize: "x-large",
-        backgroundColor: "#F2FDFF"
+        backgroundColor: "#DDBEA9"
     }
 
     let trackedTasksStyle = {
         overflow: 'auto',
-        backgroundColor: "#F2FDFF",
+        backgroundColor: "#DDBEA9",
         width: "98%",
         height: "52%",
         borderRadius: "25px"
@@ -235,7 +237,7 @@ const Text2 = styled.div`
     font-size: 35px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    color: #135bc6;
+    color: #582F0E;
     top: 36px;
     margin-left: 20px;
 `;

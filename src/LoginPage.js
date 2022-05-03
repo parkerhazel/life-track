@@ -43,6 +43,7 @@ const Welcome = styled.div`
   position: relative;
   min-width: 706px;
   margin: 200px 0px 23px 0px;
+  padding-left: 70px;
 `;
 const Text1 = styled.div`
   text-align: center;
@@ -89,4 +90,4 @@ const Button = styled.button`
   font-size: 35px;
   font-family: Inter;
   font-weight: 400;
-`
+`;

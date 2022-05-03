@@ -324,8 +324,8 @@ export const TaskView = () => {
         let idx = parseInt(id.split('-')[1]);
         if (event.target.innerHTML === 'Complete') {
             event.target.innerHTML = 'Undo Completion';
-            myEvents[idx].color = '#00ca10';
-            event.target.parentElement.parentElement.style.backgroundColor = '#00ca10';
+            myEvents[idx].color = '#B7B7A4';
+            event.target.parentElement.parentElement.style.backgroundColor = '#B7B7A4';
         } else {
             event.target.innerHTML = 'Complete'
             myEvents[idx].color = '#fbf3ea'
@@ -365,7 +365,7 @@ export const TaskView = () => {
                 <div className='taskViewDiv'>
                     <Navbar />
                     <div className='btnDiv'>
-                        <button onClick={updateToListView} className='viewBtn'>List</button>
+                        <button onClick={updateToListView} className='otherBtn'>List</button>
                         <div className='space'>
                         </div>
                         <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
@@ -382,14 +382,16 @@ export const TaskView = () => {
                                 return (
                                     <div className='taskItem' id={`taskItem-${index}`} style={{backgroundColor:color}}>
                                         <div className='taskInfo'>
-                                            <h3>{task.title}</h3>
-                                            <p>{task.description}</p>
+                                            <h3 className='taskTitle'>{task.title}</h3>
+                                            <p className='descTitle'>{task.description}</p>
                                             <p className='date'>{dateStr}</p>
                                         </div>
                                         <div className='taskItemButtons'>
-                                            <button className='taskItemEdit' onClick={editTask}>Edit</button>
+                                            <button className='taskItemEdit'>Edit</button>
+                                            <div className='space'> </div>
                                             <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
-                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
+                                            <div className='space'> </div>
+                                            <button className='taskItemComplete' onClick={completeTask}>{color === '#b7b7a4' ? 'Undo Completion' : 'Complete'}</button>
                                         </div>
                                     </div>
                                 )
@@ -407,7 +409,7 @@ export const TaskView = () => {
                     <div className='taskViewDiv'>
                         <Navbar />
                         <div className='btnDiv'>
-                            <button onClick={updateToListView} className='viewBtn'>List</button>
+                            <button onClick={updateToListView} className='otherBtn'>List</button>
                             <div className='space'>
                             </div>
                             <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
@@ -430,23 +432,30 @@ export const TaskView = () => {
                 <h4 className="createTaskTitle">Create Task</h4>
                 <form className="nameinput">
                     <div className="namelabel">
+                        <div className='labelDiv'>
                         <label className="formLabel" for="name">Name:   </label>
+                        </div>
                         <input type="text" id="name" onChange={handleNameInputChange} ></input>
                     </div>
-                
+                    <div className='space'>
+                    </div>
                     <div className="descriptionlabel">
+                        <div className='labelDiv'>
                         <label className="formLabel" for="desc">Description:  </label>
+                        </div>
                         <input type="text" id="desc" onChange={handleDescriptionInputChange}></input>
                     </div>
-                    <div>
-                        <p>Date:</p>
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <div className='dateDiv'>
+                        <div className='labelDiv'>
+                        <p className='dateTitle'>Date: </p>
+                        </div>
+                        <DatePicker className='pickDate' selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
                     <div className='actionBtns'>
                             <button onClick={createTask} className='viewBtn'>Submit</button>
                             <div className='space'>
                             </div>
-                            <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
+                            <button className='otherBtn' onClick={cancelTask}>Cancel</button>
                     </div>
                 </form>
                 <div>
@@ -464,7 +473,7 @@ export const TaskView = () => {
                 <button onClick={updateToListView} className='viewBtn'>List</button>
                 <div className='space'>
                 </div>
-                <button onClick={updateToCalendarView} className='viewBtn'>Calendar</button>
+                <button onClick={updateToCalendarView} className='otherBtn'>Calendar</button>
             </div>
             <CalendarView />
         </div>

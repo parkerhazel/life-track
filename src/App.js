@@ -100,7 +100,7 @@ const Text2 = styled.div`
   font-size: 70px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: #135bc6;
+  color: #582F0E;
   position: absolute;
   top: 36px;
 `;
