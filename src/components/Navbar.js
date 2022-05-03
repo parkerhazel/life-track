@@ -47,6 +47,9 @@ const Navbar = () => {
         display: "flex",
         flexDirection: "row",
         height: "70px",
+        position: "fixed",
+        zIndex: "100",
+        width: "100%"
     }
     let dateStyle = {
         fontSize: "30px",
@@ -87,7 +90,8 @@ const Navbar = () => {
         border: "2px",
         borderStyle: "solid",
         borderRadius: "25px",
-        backdropFilter: "blur(2px)"
+        backdropFilter: "blur(2px)",
+        marginTop: "90px"
     }
 
     let closeButtonStyle = {
