@@ -4,6 +4,11 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { TaskView } from "./TaskView";
 import React, {useState} from "react";
 import styled from "styled-components";
+import { CalendarView } from './CalendarView';
+import tasks from './TaskView';
+import { myEvents } from "./TaskView";
+
+console.log(myEvents);
 
 export const auth = getAuth(app);
 
@@ -23,12 +28,24 @@ signInWithEmailAndPassword(auth, email, password)
     console.log(errorCode, errorMessage)
 });
 
+
 export default function App() {
 
     let [currentPage, setCurrentPage] = useState("Login")
 
+    // document.getElementById("listViewButton").addEventListener("click", switchToListView);
+    // document.getElementById("calendarViewButton").addEventListener("click", switchToCalendarView);
+
     function changeCurrentPage() {
-        setCurrentPage("Task View");
+        setCurrentPage("taskView");
+    }
+
+    function switchToListView() {
+        setCurrentPage('taskView');
+    }
+
+    function switchToCalendarView() {
+        setCurrentPage('calendarView');
     }
 
     if (currentPage==="Login") {
@@ -43,7 +60,7 @@ export default function App() {
         </LoginRoot>
         );
     }
-    else {
+    else if (currentPage === 'taskView') {
         return <TaskView />;
     }
 
@@ -72,7 +89,7 @@ const Text1 = styled.div`
   width: 420px;
   height: 55px;
   font-size: 30px;
-  font-family: Inter;
+  font-family:'Poppins', sans-serif;
   font-weight: 400;
   position: absolute;
   left: 143px;
@@ -81,9 +98,9 @@ const Text2 = styled.div`
   text-align: center;
   width: 706px;
   font-size: 70px;
-  font-family: Roboto;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: #135bc6;
+  color: #582F0E;
   position: absolute;
   top: 36px;
 `;
@@ -100,7 +117,7 @@ const Text3 = styled.div`
 
 const Button = styled.button`
   width: 224px;
-  background-color: #a8e2de;
+  background-color: #B7B7A4;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -110,6 +127,6 @@ const Button = styled.button`
   align-self: center;
   text-align: center;
   font-size: 35px;
-  font-family: Inter;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 `

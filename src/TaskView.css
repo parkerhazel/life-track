@@ -13,7 +13,7 @@
 .title {
     text-align: center;
     /* color: #135bc6; */
-    color: black;
+    color: #582F0E;
 }
 
 .user {
@@ -29,23 +29,70 @@
     width: 100px;
     height: 50px;
     font-size: 25px;
+    border-radius: 20px;
+    background-color: #CB997E;
+    color: white;
+    border: none;
 }
 
 .taskItem {
     border: 1px solid black;
     margin: auto;
-    width: 85%;
+    width: 80%;
     padding: 2px;
     margin-bottom: 5px;
     margin-top: 5px;
     position: relative;
     text-align: left;
-    background-color: #fbf3ea;
+    background-color: #FFE8D6;
     border-radius: 15px;
 }
 
+.taskDesc {
+    padding-left: 30px;
+}
+.viewBtn {
+    padding: 10px;
+    background-color: #6B705C;
+    color: white;
+    font-family: 'Poppins';
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    border: none;
+}
+
+.otherBtn {
+    padding: 10px;
+    background-color: #DDBEA9;
+    color: black;
+    font-family: 'Poppins';
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    border: none;
+}
+
+.btnDiv {
+    padding: 30px;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.space {
+    width: 8px;
+    height: auto;
+    display: inline-block;
+}
+
 #taskContainer {
-    background-color: #d0dbe1;
+    background-color: #CB997E;
     margin: auto;
     width: 65%;
     position: relative;
@@ -54,31 +101,115 @@
     border-radius: 15px;
 }
 
-.btnContainer {
+.actionBtns {
     padding-top: 20px;
-    padding-left: 1500px;
-}
-.viewBtn {
-    width: 200px;
-    cursor: pointer;
-    background: #FFFF;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    padding: 7px 0px 6px 0px;
-    align-self: center;
-    text-align: center;
-    font-size: 15px;
-    margin-right: 20px;
+    margin-left: 20%;
 }
 
-.calendarContainer {
-    height: 100%;
-    margin-left: 700px;
+.createTaskDiv {
     padding: 100px;
-    align-self: center;
-    display: block;
-    position: relative;
+    align-items: center;
+    padding-left: 35%
 }
+
+.label {
+    padding: 20px;
+}
+
+.createTaskTitle {
+    margin-left: 45%;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    
+  }
+
+.createBox {
+    background-color: #B7B7A4;
+    border: 30px;
+    border-radius: 20px;
+    border-color: #FBF3BA;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
+
+.nameinput {
+    padding-bottom: 30px;
+    padding-left: 5px;
+    margin-left: 30%;
+    padding-bottom: 25px;
+    padding-top: 5px;
+}
+
+#name {
+    height: 30px;
+    width: 300px;
+    border-width: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    
+}
+
+.formLabel {
+    padding-right: 10px;
+}
+
+#desc {
+    height: 70px;
+    width: 300px;
+    border-radius: 8px;
+    border-width: 0;
+    font-size: 14px;
+    
+}
+
+.pickDate {
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    align-content: center;
+}
+
+.labelDiv {
+    padding: 8px;
+}
+
+.taskTitle {
+    color: #582F0E;
+}
+
+.descTitle {
+    color: #CB997E;
+}
+.taskTitle, .descTitle, .date {
+    padding-left: 20px;
+}
+
+.date {
+    color: #6B705C;
+}
+.taskItemButtons {
+    padding: 7px;
+    padding-left: 20px;
+}
+
+.taskItemEdit, .taskItemDelete, .taskItemComplete {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+}
+
+.taskItemEdit {
+    background-color: #DDBEA9;
+    width: 70px;
+}
+
+.taskItemDelete {
+    background-color: #FFE8D6;
+    width: 70px;
+}
+
+.taskItemComplete {
+    background-color: #A5A58D;
+}
+
