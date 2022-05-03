@@ -348,57 +348,6 @@ export const TaskView = () => {
         }
     // The Create Task View Still Needs To Be Fixed, This Was For Testing Creating Tasks
     } else if (state.view === 'createTaskView') {
-        // return (
-        //     <div className='createTaskDiv'>
-        //         <h1 className='createTaskTitle'>Create Task</h1>
-        //         <form>
-        //             <label className='label' htmlFor='name'>Name</label>
-        //             <input className='nameBox' type='text' id='name' onChange={handleNameInputChange} />
-        //             <br />
-        //             <label className='label' htmlFor='description' >Description</label>
-        //             <input className='descBox' type='text' id='description' onChange={handleDescriptionInputChange}/>
-        //             <br/>
-        //             <div className='actionBtns'>
-        //                 <button onClick={createTask} className='viewBtn'>Submit</button>
-        //                 <div className='space'>
-        //                 </div>
-        //                 <button className='cancelBtn'>Cancel</button>
-        //             </div>
-        //         </form>
-        //     </div>
-        // )
-
-        // return (
-        //     <div className="createBox">
-        //         <div>
-            
-        //             <h4 className="createTaskTitle">Create Task</h4>
-        //             <form className="nameinput">
-        //                 <div className="namelabel">
-        //                     <label className="formLabel" htmlFor="name">Name:        </label>
-        //                     <input type="text" id="name" onChange={handleNameInputChange} ></input>
-        //                 </div>
-                    
-        //                 <div className="descriptionlabel">
-        //                     <label className="formLabel" htmlFor="description">Description:  </label>
-        //                     <input type="text" id="description" onChange={handleDescriptionInputChange}></input>
-        //                 </div>
-        //                 <div>
-        //                     <label htmlFor="date">Date:                     </label>
-        //                     <input type="text" id="date"></input>
-        //                     {/* <DatePicker id='date' selected={startDate} onChange={(date:Date) => setStartDate(date)} /> */}
-        //                 </div>
-                        <div className='actionBtns'>
-                            <button onClick={createTask} className='viewBtn'>Submit</button>
-                            <div className='space'>
-                            </div>
-                            <button className='cancelBtn' onClick={cancelTask}>Cancel</button>
-                        </div>
-        //             </form>
-        //         </div>
-        //     </div>
-
-        // )
         return (
         <div className="createBox">
             <div>
