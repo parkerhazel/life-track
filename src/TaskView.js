@@ -236,7 +236,18 @@ export const TaskView = () => {
         let id = event.target.parentElement.parentElement.id;
         let idx = parseInt(id.split('-')[1]);
         console.log(idx);
-        myEvents[idx].visible = false;
+        // myEvents[idx].visible = false;
+        myEvents.splice(idx, 1)
+        setState((prevState) => {
+            return {
+                view: 'listView',
+                tasks: prevState.tasks,
+                description: prevState.description,
+                name: prevState.name,
+                recurring: prevState.recurring
+                
+            }
+        });
         console.log(myEvents);
     }
 
