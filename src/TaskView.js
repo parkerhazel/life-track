@@ -237,7 +237,8 @@ export const TaskView = () => {
         });
     }
 
-    const cancelTask = () => {
+    const cancelTask = (event) => {
+        event.preventDefault()
         setState((prevState) => {
             return {
                 view: 'listView',
@@ -310,7 +311,8 @@ export const TaskView = () => {
         setEditIdx(() => idx);
     }
 
-    const saveEditedTask = () => {
+    const saveEditedTask = (event) => {
+        event.preventDefault()
         myEvents.splice(editIdx, 1);
         myEvents.push({
             title: state.name,

@@ -128,8 +128,8 @@ const Navbar = () => {
         let idx = parseInt(id.split('-')[1]);
         if (event.target.innerHTML === 'Complete') {
             event.target.innerHTML = 'Undo Completion';
-            myEvents[idx].color = '#00ca10';
-            event.target.parentElement.parentElement.style.backgroundColor = '#00ca10';
+            myEvents[idx].color = '#B7B7A4';
+            event.target.parentElement.parentElement.style.backgroundColor = '#B7B7A4';
         } else {
             event.target.innerHTML = 'Complete'
             myEvents[idx].color = '#fbf3ea'
@@ -148,7 +148,7 @@ const Navbar = () => {
 
     let tasks = (<div style={{paddingLeft: "20px", paddingTop:"15px"}}>{myEvents.map((task, index) => {
         if (task.visible) {
-            let color = task.color === '#00ca10' ? task.color : '#fbf3ea';
+            let color = task.color === '#B7B7A4' ? task.color : '#fbf3ea';
             return (
                 <div className='profileTaskItem' id={`taskItem-${index}`} style={{backgroundColor:color}}>
                     <div className='taskInfo'>
@@ -158,7 +158,7 @@ const Navbar = () => {
                     <div className='taskItemButtons'>
                         <button className='taskItemEdit'>Edit</button>
                         <button className='taskItemDelete' onClick={deleteTask}>Delete</button>
-                        <button className='taskItemComplete' onClick={completeTask}>{color === '#00ca10' ? 'Undo Completion' : 'Complete'}</button>
+                        <button className='taskItemComplete' onClick={completeTask}>{color === '#B7B7A4' ? 'Undo Completion' : 'Complete'}</button>
                     </div>
                 </div>
             )
